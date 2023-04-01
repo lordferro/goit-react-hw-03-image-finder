@@ -23,6 +23,7 @@ export class App extends Component {
   };
 
   async componentDidUpdate(prevProp, prevState) {
+    console.log('1');
     const { query, page } = this.state;
     if (prevState.query !== this.state.query) {
       const {
@@ -60,6 +61,9 @@ export class App extends Component {
       this.setState({
         isVisible: false,
       });
+    } else if (this.state.query === e.target.elements[1].value) {
+      toast.warn("you should know, that you typed the same query :)")
+      this.render();
     } else {
       this.setState({
         isVisible: true,
@@ -68,8 +72,6 @@ export class App extends Component {
         query: e.target.elements[1].value,
       });
     }
-
-    e.target.elements[1].value = '';
   };
 
   handleLoadMoreBtn = () => {
